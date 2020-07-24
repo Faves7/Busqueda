@@ -1,0 +1,70 @@
+#!/bin/bash
+
+clear
+
+mostrarDir () {
+	echo "Buscando directorios..."
+	sleep 2
+	echo
+	echo "Directorios llamados '$1':"
+	find . -type d -name $1
+}
+
+mostrarArchivo () {
+	echo "Buscando archivos..."
+	sleep 2
+	echo
+	echo "Archivos llamados '$1':"
+	find . -type f -name $1
+}
+
+mostrarExt () {
+	echo "Buscando extensiones de archivos..."
+	sleep 2
+	echo
+	echo "Extensiones llamadas '$1':"
+	find . -type f -name *$1
+}
+
+cd ~
+
+echo "============BUSQUEDA================="
+echo "====================================="
+echo "1. Buscar directorios."
+echo "2. Buscar archivos."
+echo "3. Buscar extensiones de archivos."
+echo "4. Salir."
+echo "====================================="
+
+echo
+read -p "Ingrese una opción: " prog
+echo
+
+case $prog in
+	1) read -p "Ingrese el nombre del directorio que desea buscar: " buscar
+	   mostrarDir $buscar;;
+
+	2) read -p "Ingrese el nombre del archivo que desea buscar: " buscar
+	   mostrarArchivo $buscar;;
+
+	3) read -p "Ingrese la extension que desea buscar: " buscar
+	   mostrarExt $buscar;;
+
+	4) echo "Saliendo del menú..."
+	   sleep 2
+	   clear;;
+esac
+
+echo "===================="
+echo
+echo "Desea realizar otra opción?"
+read -p "[si/no]:" prog
+
+case $prog in
+	si) cd /home/ubuntu/Escritorio
+            ./busqueda;;
+	no) echo
+	    echo "Saliendo del menú..."
+	    sleep 2
+	    clear;;
+esac
